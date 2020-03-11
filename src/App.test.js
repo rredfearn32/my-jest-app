@@ -8,11 +8,26 @@ Enzyme.configure({
   adapter: new EnzymeAdapter()
 });
 
-test('renders without crashing', () => {
+test('renders without error', () => {
   const wrapper = shallow(<App />);
-  expect(wrapper).toBeTruthy(); 
-})
+  const appComponent = wrapper.find('[data-test="component-app"]');
+  expect(appComponent.length).toBe(1);
+});
 
-test('renders Hello World header', () => {
-  
+test('renders increment button', () => {
+
+});
+
+test('renders counter display', () => {
+
+});
+
+
+test('counter starts at 0', () => {
+
+});
+
+// Test display rather than state, LESS BRITLE
+test('clicking increment button incremenets counter display', () => {
+
 });
