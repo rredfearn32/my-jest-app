@@ -15,6 +15,12 @@ class App extends Component {
   }
 
   increaseCounter() {
+    if(this.state.error) {
+      this.setState({
+        error: false
+      });
+    }
+
     this.setState({
       counter: this.state.counter + 1
     });
@@ -49,7 +55,7 @@ class App extends Component {
         <ul>
           <li><s>Decrement button</s></li>
           <li><s>No count below zero + display error if attempted</s></li>
-          <li>Clear error on increment</li>
+          <li><s>Clear error on increment</s></li>
         </ul>
       </div>
     );

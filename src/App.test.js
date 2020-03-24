@@ -120,3 +120,17 @@ test('error shown when counter is attempted to be brough below zero', () => {
   const errorMessage = findByTestAttr(wrapper, 'error-message');
   expect(errorMessage).toHaveLength(1);
 });
+
+test('error is cleared when the increment button is clicked', () => {
+  const counter = 0;
+  const wrapper = setup(null, { counter });
+
+  const decrementButton = findByTestAttr(wrapper, 'decrement-button');
+  decrementButton.simulate('click');
+
+  const incrementButton = findByTestAttr(wrapper, 'increment-button');
+  incrementButton.simulate('click');
+
+  const errorMessage = findByTestAttr(wrapper, 'error-message');
+  expect(errorMessage).toHaveLength(0);
+});
