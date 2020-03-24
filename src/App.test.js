@@ -45,12 +45,17 @@ test('renders increment button', () => {
   expect(button.length).toBe(1);
 });
 
+test('renders decrement button', () => {
+  const wrapper = setup();
+  const button = findByTestAttr(wrapper, 'decrement-button');
+  expect(button.length).toBe(1);
+});
+
 test('renders counter display', () => {
   const wrapper = setup();
   const counterDisplay = findByTestAttr(wrapper, 'counter-display');
   expect(counterDisplay.length).toBe(1);
 });
-
 
 test('counter starts at 0', () => {
   const wrapper = setup();
@@ -70,4 +75,48 @@ test('clicking increment button incremenets counter display', () => {
   // Find display and test value
   const counterDisplay = findByTestAttr(wrapper, 'counter-display');
   expect(counterDisplay.text()).toContain(counter + 1);
+});
+
+test('clicking decrement button decremenets counter display', () => {
+  const counter = 7;
+  const wrapper = setup(null, { counter });
+
+  // Find button and click
+  const button = findByTestAttr(wrapper, 'decrement-button');
+  button.simulate('click');
+
+  // Find display and test value
+  const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+  expect(counterDisplay.text()).toContain(counter - 1);
+});
+
+test('does not initially render error message', () => {
+  const wrapper = setup();
+
+  // Try to find error message
+  const errorMessage = findByTestAttr(wrapper, 'error-message');
+  expect(errorMessage).toHaveLength(0);
+});
+
+test('counter cannot be reduced below zero', () => {
+  const counter = 0;
+  const wrapper = setup(null, { counter });
+
+  const decrementButton = findByTestAttr(wrapper, 'decrement-button');
+  decrementButton.simulate('click');
+
+  // Should not have decremented the counter
+  const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+  expect(counterDisplay.text()).toContain(counter);
+});
+
+test('error shown when counter is attempted to be brough below zero', () => {
+  const counter = 0;
+  const wrapper = setup(null, { counter });
+
+  const decrementButton = findByTestAttr(wrapper, 'decrement-button');
+  decrementButton.simulate('click');
+
+  const errorMessage = findByTestAttr(wrapper, 'error-message');
+  expect(errorMessage).toHaveLength(1);
 });
