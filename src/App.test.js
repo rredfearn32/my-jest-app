@@ -11,8 +11,4 @@ Enzyme.configure({
 test('renders without crashing', () => {
   const wrapper = shallow(<App />);
   expect(wrapper).toBeTruthy(); 
-})
-
-test('renders Hello World header', () => {
-  
 });
