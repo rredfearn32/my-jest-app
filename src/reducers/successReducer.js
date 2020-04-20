@@ -1,9 +1,16 @@
+import { actionTypes } from "../actions";
+
 /**
  * @method successReducer
  * @param {array} state - Array of guessed words.
  * @param {object} action - Action to be reduced.
  * @returns {boolean} - New success sate.
  */
-export default (state, action) => {
-    return null;
+export default (state = false, action) => {
+    switch(action.type) {
+        case(actionTypes.CORRECT_GUESS):
+            return true
+        default:
+            return state;
+    }
 }
