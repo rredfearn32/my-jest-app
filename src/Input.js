@@ -22,8 +22,8 @@ class Input extends Component {
     }
 };
 
-const mapStateToprops = ({ success }) => {
+const mapStateToProps = ({ success }) => {
     return { success };
 }
 
-export default connect(mapStateToprops)(Input);
+export default connect(mapStateToProps)(Input);
