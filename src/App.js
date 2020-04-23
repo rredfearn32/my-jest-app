@@ -23,9 +23,14 @@ export class UnconnectedApp extends Component {
     return (
       <div className="container">
         <h1>Jotto</h1>
+        {/* <p>The secret word is {this.props.secretWord}</p> */}
         <Congrats success={this.props.success} />
         <Input />
         <GuessedWords guessedWords={this.props.guessedWords} />
+        <p>
+          <strong>TODO: </strong>
+          <a href="https://github.com/flyrightsister/udemy-react-testing-projects/blob/master/jotto-redux/README.md">Challenges</a> complete: 0/5
+          </p>
       </div>
     );
   }
