@@ -5,11 +5,12 @@ import { getLetterMatchCount } from '../helpers';
 export const actionTypes = {
     CORRECT_GUESS: 'CORRECT_GUESS',
     GUESS_WORD: 'GUESS_WORD',
-    SET_SECRET_WORD: 'SET_SECRET_WORD'
+    SET_SECRET_WORD: 'SET_SECRET_WORD',
+    RESET_GAME: 'RESET_GAME'
 };
 
 /**
- * Returns Redux Think action that dispatches GUESS_WORD action
+ * Returns Redux Thunk action that dispatches GUESS_WORD action
  * and (conditionally) CORRECT_GUESS action.
  * @function guessWord
  * @param  {string} guessedWord - The word which has been guessed.
@@ -47,4 +48,17 @@ export const getSecretWord = () => {
                 });
             });
     };
-}
+};
+
+/**
+ * Triggers a reset of the game state.
+ * @function resetGame
+ * @returns {function} - Redux Thunk function.
+ */
+export const resetGame = () => {
+    // return (dispatch, getState) => {
+    //     if(getState().success) {
+    //         console.log(getState());
+    //     }
+    // };
+};

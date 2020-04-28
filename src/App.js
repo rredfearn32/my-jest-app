@@ -6,6 +6,7 @@ import './App.css';
 import GuessedWords from './GuessedWords';
 import Congrats from './Congrats';
 import Input from './Input';
+import Reset from './Reset';
 import { getSecretWord } from './actions';
 
 export class UnconnectedApp extends Component {
@@ -23,13 +24,14 @@ export class UnconnectedApp extends Component {
     return (
       <div className="container">
         <h1>Jotto</h1>
-        {/* <p>The secret word is {this.props.secretWord}</p> */}
+        <p>The secret word is {this.props.secretWord}</p>
         <Congrats success={this.props.success} />
+        <Reset />
         <Input />
         <GuessedWords guessedWords={this.props.guessedWords} />
         <p>
           <strong>TODO: </strong>
-          <a href="https://github.com/flyrightsister/udemy-react-testing-projects/blob/master/jotto-redux/README.md">Challenges</a> complete: 0/5
+          <a href="https://github.com/flyrightsister/udemy-react-testing-projects/blob/master/jotto-redux/README.md">Challenges</a> complete: 1/5
           </p>
       </div>
     );

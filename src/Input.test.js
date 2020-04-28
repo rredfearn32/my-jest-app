@@ -36,7 +36,7 @@ describe('render', () => {
         });
     });
     describe('word has been guessed', () => {
-        let wrapper
+        let wrapper;
         beforeEach(() => {
             const initialState = {success: true};
             wrapper = setup(initialState);
@@ -67,7 +67,7 @@ describe('redux props', () => {
         const wrapper = setup();
         const guessWordProp = wrapper.instance().props.guessWord;
         expect(guessWordProp).toBeInstanceOf(Function);
-    })
+    });
 });
 
 describe('"guessWord" action creator', () => {
