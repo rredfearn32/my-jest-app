@@ -11,6 +11,7 @@ const LanguagePicker = ({ setLanguage }) => {
         return (
             <span 
                 data-test='language-icon'
+                className="btn p-0"
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}>
                 {lang.symbol}

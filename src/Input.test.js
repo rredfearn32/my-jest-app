@@ -1,20 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { findByTestAttr, checkProps } from '../test/testUtils';
 
 import Input from './Input';
+import languageContext from './contexts/languageContext';
 
 /**
  * Setup function for Input component
- * @param {String} secretWord
- * @returns {ShallowWrapper} 
+ * @param {String} testValues
+ * @returns {ReactWrapper} 
  */
-const setup = (secretWord='party') => {
-    return shallow(<Input secretWord={secretWord} />);
+const setup = ({ language, secretWord }) => {
+    language = language || 'en';
+    secretWord = secretWord || 'party';
+
+    return mount(
+        <languageContext.Provider value={language}>
+            <Input secretWord={secretWord} />
+        </languageContext.Provider>
+    );
 };
 
 test('Input renders without error', () => {
-    const wrapper = setup();
+    const wrapper = setup({ });
     const component = findByTestAttr(wrapper, 'component-input');
     expect(component.length).toBe(1);
 });
@@ -29,7 +37,7 @@ describe('state controlled input field', () => {
         mockSetCurrentGuess.mockClear();
         React.useState = jest.fn(() => ['', mockSetCurrentGuess]);
         
-        wrapper = setup();
+        wrapper = setup({ });
     });
     test('currentGuess state updates upon input box value change', () => {
         const inputBox = findByTestAttr(wrapper, 'input-box');
@@ -48,3 +56,16 @@ describe('state controlled input field', () => {
         expect(mockSetCurrentGuess).toHaveBeenCalled();
     });
 });
+
+describe('languagePicker', () => {
+    test('correctly renders submit string in english', () => {
+        const wrapper = setup({ language: 'en' });
+        const submitButton = findByTestAttr(wrapper, 'submit-button');
+        expect(submitButton.text()).toBe('Submit');
+    });
+    test('correctly renders submit string in german', () => {
+        const wrapper = setup({ language: 'de' });
+        const submitButton = findByTestAttr(wrapper, 'submit-button');
+        expect(submitButton.text()).toBe('Einreichen');
+    });
+})
