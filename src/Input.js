@@ -6,7 +6,6 @@ const Input = ({ secretWord }) => {
     const [ currentGuess, setCurrentGuess ] = React.useState('');
     const submitGuess = (ev) => {
         ev.preventDefault();
-        console.log('Foo bar');
         setCurrentGuess('');
     };
 
