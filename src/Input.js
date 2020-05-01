@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getLetterMatchCount } from './helpers';
+
+import guessedWordsContext from './contexts/guessedWordsContext';
 import successContext from './contexts/successContext';
 import languageContext from './contexts/languageContext';
 import stringsModule from './helpers/strings';
@@ -8,9 +11,14 @@ import stringsModule from './helpers/strings';
 const Input = ({ secretWord }) => {
     const language = React.useContext(languageContext);
     const [ success, setSuccess ] = successContext.useSuccess();
+    const [ guessedWords, setGuessedWords ] = guessedWordsContext.useGuessedWords();
     const [ currentGuess, setCurrentGuess ] = React.useState('');
     const submitGuess = (ev) => {
         ev.preventDefault();
+
+        const letterMatchCount = getLetterMatchCount(currentGuess, secretWord);
+        const newGuessedWords = [...guessedWords, { guessedWord: currentGuess, letterMatchCount }];
+        setGuessedWords(newGuessedWords);
 
         if (currentGuess === secretWord) {
             setSuccess(true);
