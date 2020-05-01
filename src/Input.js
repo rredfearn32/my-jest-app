@@ -11,6 +11,12 @@ const Input = ({ secretWord }) => {
     const [ currentGuess, setCurrentGuess ] = React.useState('');
     const submitGuess = (ev) => {
         ev.preventDefault();
+
+        if (currentGuess === secretWord) {
+            setSuccess(true);
+        }
+
+        // Clearing input box
         setCurrentGuess('');
     };
 
